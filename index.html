@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Javascript_Case </title>
+    </head>
+    <body>
+        <form name="fform">
+            <table border="1" width="100%" >
+                <tr>
+                    <td width="100%" colspan="2" align="center">
+                        <h2> Travel Bintang Abadi </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">
+                        <pre>
+                            Nama            : <input type="text" name="inputNama">
+                            Tujuan          : <select name="inputTujuan">
+                                <option> Jakarta </option>
+                                <option> Solo </option>
+                                <option> Surabaya </option>
+                            </select>
+                            Kelas           : <select name="inputKelas">
+                                <option> Eksekutif</option>
+                                <option> Bisnis </option>
+                                <option> Ekonomi </option>
+                            </select>
+                            Jumlah Tiket    : <input type="text" name="inputJumlah">
+                            Member          : <input type="checkbox" name="inputMember"> Ya
+                        </pre>
+                    </td>
+                    <td width="50%">
+                        <pre>
+                            Harga Tiket : <input type="text" name="outputHarga">
+                            Sub Total   : <input type="text" name="outputSub">
+                            Diskon      : <input type="text" name="outputDiskon">
+                            Total Bayar : <input type="text" name="outputTotal">
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100%" colspan="2" align="center">
+                        <input type="button" value="Submit" onclick="submitData()">
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <script>
+            function submitData() {
+                var nama = (document.fform.inputNama.value);
+                var tujuan = (document.fform.inputTujuan.value);
+                var kelas = (document.fform.inputKelas.value);
+                var jumlah = parseFloat(document.fform.inputJumlah.value);
+                var harga = 0.0;
+                var sub = 0.0;
+                var diskon = 0.0;
+                var total = 0.0;
+
+                if (tujuan=="Jakarta") {
+                    if (kelas=="Eksekutif") {
+                        harga = 70000;
+                    } else if (kelas=="Bisnis") {
+                        harga = 40000;
+                    } else {
+                        harga = 10000;
+                    }
+                }
+
+                if (tujuan=="Solo") {
+                    if (kelas=="Eksekutif") {
+                        harga = 80000;
+                    } else if (kelas=="Bisnis") {
+                        harga = 50000;
+                    } else {
+                        harga = 20000;
+                    }
+                }
+
+                if (tujuan=="Surabaya") {
+                    if (kelas=="Eksekutif") {
+                        harga = 90000;
+                    } else if (kelas=="Bisnis") {
+                        harga = 60000;
+                    } else {
+                        harga = 30000;
+                    }
+                }
+
+                sub = jumlah * harga;
+
+                if (document.fform.inputMember.checked==true) {
+                    diskon = 0.10 * sub;
+                } else {
+                    diskon = 0.0;
+                }
+
+                total = sub - diskon;
+
+                document.fform.outputHarga.value = eval(harga);
+                document.fform.outputSub.value = eval(sub);
+                document.fform.outputDiskon.value = eval(diskon);
+                document.fform.outputTotal.value = eval(total);
+            }
+        </script>
+    </body>
+</html>
